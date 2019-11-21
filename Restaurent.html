@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Restaurent</title>
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="restaurent.css">
+  <script type="text/javascript">
+  	var selected=0;
+		function countCheckboxes(form)
+		{
+			var radioButtons=form.book;
+			radioChosen=false;
+			
+		//alert(document.getElementById('radioid').value);
+
+		 for(var i=0;i<radioButtons.length;i++)
+			 {
+				if(radioButtons[i].checked)
+				{
+					radioChosen=true;
+					selected=radioButtons[i].value;
+				alert("Your Table Have been Booked For "+radioButtons[i].value+" people");
+				}
+			  }
+			if(radioChosen==false)
+			{
+				alert("plz book your table");
+			}
+			else{
+				var i=0;
+				// for(i=0;i<selected;i++)
+				// {
+
+				// }
+			}
+			return false;
+		}
+		// function foo(field)
+		// {
+		// 	var a=document.getElementById(this).value;
+			
+		// 	return false;
+		// }
+		var a=0;
+		var user=0;
+		function countItems(form)
+		{
+			var checkButtons=form.item;
+			console.log(form[0].value);
+			var itemarr=new Array();
+			var checkChoosen=false;
+			var j=0;
+			user++;
+			if(user>selected)
+			{
+				alert(`Table Booked for Only ${selected} People`);
+				return false;
+			}
+			var userline=document.createElement("h3");
+			userline.setAttribute("id","heading");
+
+			userline.innerHTML=`Order Placed For ${user} Person`;
+			document.getElementById("itemset").appendChild(userline);
+			
+			for(var i=0;i<checkButtons.length;i++)
+			{
+				if(checkButtons[i].checked)
+				{
+					var list=document.createElement("li");
+					list.setAttribute("class","choosen");
+					list.innerHTML=checkButtons[i].value;
+                    document.getElementById("itemset").appendChild(list); 
+					var value=checkButtons[i].value.split(",")[1];
+					a=a+parseInt(value);
+					checkButtons[i].checked=false;
+				}
+			}
+				 document.getElementById("bill").innerHTML="The Total Bill is "+(a);
+	          return false;
+		}
+	</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="a">
+		<div class="row">	
+			<div class="col-md-12">
+			<div class="text-danger">
+				<h1>WELCOME  TO MISHU's  RESTAURENT</h1>
+			</div>
+			<center><P class="text-muted">GOOD FOOD IS GOOD MOOD  !!!!</P></center>
+			</div>
+		</div>
+		</div>
+		<div class="b">
+		<div class="row">
+			<div class="col-md-12">
+			<img src="rest.jpg">
+			</div>
+		</div>
+		</div>
+		<br>
+		<br>
+		<div class=row>
+			<div class="col-md-12">
+			<center><h2>BOOK TABLE FOR HOW MANY PEOPLE??</h2><br></center>		
+			</div>
+		</div>
+		<div class="row">
+			<form name="frmBook" onsubmit="return countCheckboxes(this)" >
+				<fieldset id="radioid">
+				<div class="col-sm-2">
+					
+					<center><input type=radio name="book" value="1"  > ONE</center>
+				</div> 
+				<div class="col-sm-2">
+				<center><input type=radio name="book" value="2"  > TWO</center>
+				</div>
+				<div class="col-sm-2">
+				<center><input type=radio name="book" value="3" > THREE </center>
+				</div>
+				<div class="col-sm-2">
+				<center><input type=radio name="book" value="4"> FOUR </center>
+				</div>
+			
+				<div class="col-sm-4">
+				<center><input type="submit" value="CONFIRM YOUR BOOKING" class="btn btn-danger"></center>
+				</div>
+				</fieldset>
+			</form>
+		</div>
+		<br>
+		<br>
+		<hr/>
+		<div class="row">
+			<center><h2>SPECIAL'S OF OUR RESTAURENT</h2></center>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-sm-4">
+			<div class="bc">
+				<img src="food1.jpg" class="image" >
+				<div class="overlay">
+				<div class="text">
+					<p>Yummy Noodles!!</p>
+				</div>
+			</div>
+			</div>
+			</div>
+			<div class="col-sm-4">
+			<div class="bc">
+				<img src="food2.jpg" class="image" height="300px" width="450px">
+				<div class="overlay">
+				<div class="text">
+					<p>Yummy Nacho's</p>
+				</div>
+			</div>
+			</div>
+			</div>
+			<div class="col-sm-4">
+			<div class="bc">
+				<img src="food2.jpg" class="image" height="300px" width="430px">
+				<div class="overlay">
+				<div class="text">
+					<p>Yummy Pasta</p>
+				</div>
+			</div>
+			</div>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-sm-6">
+				<center><h2>MENU</h2></center>
+				<form name="frmItem" onsubmit="return countItems(this)">
+			 	<table class="table table-hover">
+      			<tr>
+        		<th>MENU</th>
+        		<th>SELECT ITEM</th>
+        		<th>PRICE</th>
+      			</tr>
+	      		<tr>
+        		<td>Nooddles</td>
+        		<td><input type="checkbox" name="item" value="Nooddles,150"></td>
+        		<td>Rs150</td>
+      			</tr>
+      			<tr>
+        		<td>Nachos</td>
+        		<td><input type="checkbox" name="item" value="Nachos,200"></td>
+        		<td>Rs200</td>
+      			</tr>
+      			<tr>
+        		<td>Pasta</td>
+        		<td><input type="checkbox" name="item" value="Pasta,250"></td>
+        		<td>Rs250</td>
+      			</tr>
+  				</table>
+  				<center><input type="submit" class="btn btn-danger" value="Confirm your order"></center>
+  				</form>
+			</div>
+			<div class="col-sm-6">
+				<center><h2>ITEMS SELECTED</h2></center>
+				<br>
+				<div class="demo" id="itemset">
+				</div>
+				<div class="demo1" id="bill">
+				</div>
+			</div>
+			</div>
+			</div>
+</body>
+</html>
